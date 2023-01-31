@@ -3,7 +3,7 @@
  *
  * [27] Remove Element
  */
-import java.util.*;
+import java.util.*;   
 // @lc code=start
 class Solution {
     public int removeElement(int[] nums, int val) {
