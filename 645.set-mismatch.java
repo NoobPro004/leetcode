@@ -45,21 +45,47 @@
 // @lc code=start
 class Solution {
     public int[] findErrorNums(int[] nums) {
-        int[] ans = new int[2];
-        for(int i:nums){
-            int abs=Math.abs(i);
-            if(nums[abs-1]<0){
-                ans[0]=abs;
-            }else{
-                nums[abs-1]=-nums[abs-1];
-            }
-        }
+        //         int[] ans = new int[2];
+//         for(int i:nums){
+//             int abs=Math.abs(i);
+//             if(nums[abs-1]<0){
+//                 ans[0]=abs;
+//             }else{
+//                 nums[abs-1]=-nums[abs-1];
+//             }
+//         }
         
+//         for(int i=0;i<nums.length;i++){
+//             if(nums[i]>0)ans[1]=i+1;
+//         }
+        
+//         return ans;
+        
+        int xor=0;
         for(int i=0;i<nums.length;i++){
-            if(nums[i]>0)ans[1]=i+1;
+            xor^=(i+1)^nums[i];
         }
-        
-        return ans;
+        int mask=1;
+        while((mask & xor)==0){
+        mask<<=1;
+        }
+
+        int xor1=0;
+        for(int i:nums){
+        if((i & mask) != 0){
+            xor1^=i;
+        }
+        }
+
+        for(int i=1;i<=nums.length;i++){
+        if((i & mask) != 0){
+            xor1^=i;
+        }
+        }
+        for(int i:nums){
+        if(i==xor1)return new int[]{xor1,xor1^xor};
+        }
+        return new int[]{xor1^xor,xor1};
     }
 }
 // @lc code=end
