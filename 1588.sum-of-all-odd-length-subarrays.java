@@ -70,7 +70,16 @@
 // @lc code=start
 class Solution {
     public int sumOddLengthSubarrays(int[] arr) {
+        int ans=0;
+        int n=arr.length;
+         for(int i=0;i<arr.length;i++){
+             int left=i;
+             int right=n-i-1;
+             ans+=arr[i]*(left/2 + 1)*(right/2 + 1);
+             ans+=arr[i]*((left+1)/2)*((right+1)/2);
+         }
         
+        return ans;
     }
 }
 // @lc code=end
