@@ -8,15 +8,14 @@ import java.util.*;
 class Solution {
     public boolean isPalindrome(int x) {
         if(x<0)return false;
-
-        int curr=0;
-        int n=x;
-        while(n>0){
-            curr=curr*10+n%10;
-            n/=10;
+        int a=0;
+        int t=x;
+        while(t>0){
+            a=a*10+t%10;
+            t/=10;
         }
-
-        return curr==x;
+        
+        return a==x;
     }
 }
 // @lc code=end
